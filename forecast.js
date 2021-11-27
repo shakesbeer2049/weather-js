@@ -1,27 +1,4 @@
-const accukey = 'key here'
 const openKey = 'key here'
-
-// const getCity = async(city) => {
-//     const base = 'http://dataservice.accuweather.com/locations/v1/cities/search'
-//     //const base = `api.openweathermap.org/data/2.5/weather?q=${city}&appid=${openKey}`
-//     const query = `?apikey=${accukey}&q=${city}`;
-//     const response = await fetch(base + query);
-    
-//     const data = await response.json();
-//     return data[0];
-//     };
-// getCity('london').then(async(data) => {
-//     const forecast = await fetch(`https://cors-anywhere.herokuapp.com/http://dataservice.accuweather.com/currentconditions/v1/${data.Key}`)
-//     const fore = await forecast.json()
-//     console.log(data.Key)
-//     console.log(data.EnglishName);
-//     console.log(fore);
-//     document.querySelector('.city-name').innerHTML = data.EnglishName
-// })
-//     .catch(err=> console.log(err))
-
-
-
 
 
 const fakeAPI = () =>{
