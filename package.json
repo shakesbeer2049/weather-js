@@ -1,0 +1,26 @@
+{
+  "name": "weather-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fakeapi.js",
+  "scripts": {
+    "build-css": "postcss tailwind.css -o ./public/styles.css -w --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shakesbeer2049/weather-js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shakesbeer2049/weather-js/issues"
+  },
+  "homepage": "https://github.com/shakesbeer2049/weather-js#readme",
+  "dependencies": {
+    "autoprefixer": "^10.4.0",
+    "postcss-cli": "^9.0.2",
+    "tailwindcss": "^2.2.19",
+    "watch": "^1.0.2"
+  }
+}

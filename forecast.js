@@ -1,47 +1,64 @@
-const openKey = 'key here'
+const openKey = "fd76d320b3d28632106ac92515f264b4";
 
+const forecast = () => {
+  let input = document.querySelector("input");
 
-const fakeAPI = () =>{
-    fetch('https://jsonplaceholder.typicode.com/posts')
-  .then((response) => response.json())
-  .then((data) =>{
-      console.log(data)
-    //   data.forEach(ele => console.log(ele.title))
-      const cityHandler = (e) =>{
-        console.log(e.target.value);
-      if(e.target.value !=""){
-            data.forEach(ele => {
-                console.log(ele.title.length);
-                if(ele.title.toLowerCase().includes(e.target.value.toLowerCase())) console.log(ele.title)
-            })
+  document.querySelector("#search-btn").addEventListener("click", handleSearch);
+
+  function handleSearch() {
+    let city = input.value;
+    console.log("hii");
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${openKey}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(city);
+        if (data.cod != 404 && data.name.toLowerCase() == city.toLowerCase()) {
+          console.log(data);
+          const degree = " &degC";
+          const faren = " &degF";
+
+          document.querySelector(".city-name").innerHTML = data.name;
+          document.querySelector(
+            ".temp"
+          ).innerHTML = ` Temperature : ${Math.round(
+            data.main.temp - 273
+          )} ${degree} `;
+          document.querySelector(".temp-max").innerHTML = ` Min : ${Math.round(
+            data.main.temp_max - 273
+          )} ${degree}`;
+          document.querySelector(".temp-min").innerHTML = ` Max : ${Math.round(
+            data.main.temp_min - 273
+          )} ${degree}`;
+          document.querySelector(
+            ".humidity"
+          ).innerHTML = ` Humidity:  ${data.main.humidity}`;
+          document.querySelector(
+            ".pressure"
+          ).innerHTML = ` Pressure: ${data.main.pressure}`;
+
+          let tmp = Math.round(data.main.temp - 273);
+          if (tmp >= 25)
+            document.querySelector(".data").style.backgroundImage =
+              "url('media/summer.jpg')";
+          else if (tmp > 15 && tmp < 25)
+            document.querySelector(".data").style.backgroundImage =
+              "url('media/autumn.jpg')";
+          else if (tmp > 1 && tmp <= 15)
+            document.querySelector(".data").style.backgroundImage =
+              "url('media/winter.jpg')";
+          else if (tmp <= 1)
+            document.querySelector(".data").style.backgroundImage =
+              "url('media/frost.jpg')";
+          input.value = "";
+        } else {
+          document.querySelector(".weather-data").innerHTML = "";
+          document.querySelector(".city-name").innerHTML =
+            "<h1>No Matches Found</h1>";
         }
-        else console.log("no input");
-        const city = e.target.value;
-    }
-    document.querySelector('input').addEventListener('input', cityHandler)
-    });
-}
-fakeAPI()
+      });
+  }
+};
 
-
-    const forecast = async() => {
-        const locationURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${openKey}&units=metric`
-        const response = await fetch(locationURL)
-        const data = await response.json()
-        console.log(data);
-        console.log(data.name);
-        console.log(data.main);
-
-        //DOM
-        const degree = " &degC"
-        const faren = " &degF"
-        document.querySelector(".city-name").innerHTML =  data.name;
-        document.querySelector(".temp").innerHTML =      ` Temperature : ${data.main.temp} ${degree} `
-        document.querySelector(".feels-temp").innerHTML= ` Feels like : ${data.main.feels_like} ${degree}`
-        document.querySelector(".temp-max").innerHTML =  ` Min : ${data.main.temp_max} ${degree}`
-        document.querySelector(".temp-min").innerHTML =  ` Max : ${data.main.temp_min} ${degree}`
-        document.querySelector(".humidity").innerHTML =  ` Humidity:  ${data.main.humidity}`
-        document.querySelector(".pressure").innerHTML =  ` Pressure: ${data.main.pressure}`
-        
-
-    }
+forecast();
