@@ -1,4 +1,4 @@
-const openKey = "fd76d320b3d28632106ac92515f264b4";
+const openKey = "paste_key_here";
 
 const forecast = () => {
   let input = document.querySelector("input");
