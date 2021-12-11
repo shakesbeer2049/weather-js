@@ -621,10 +621,6 @@ video {
 	font-size: 1.875rem;
 	line-height: 2.25rem;
 }
-.text-xl {
-	font-size: 1.25rem;
-	line-height: 1.75rem;
-}
 .font-bold {
 	font-weight: 700;
 }
@@ -637,21 +633,42 @@ video {
 	color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
+body{
+  font-family: 'Baloo Bhaijaan 2', cursive;
+}
 .main-container{
   height: 100vh;
 }
 .data{
     background-size: cover;
 }
+.weather-data{
+  
+  width: -webkit-fit-content;
+  
+  width: -moz-fit-content;
+  
+  width: fit-content;
+  margin: auto;
+  box-shadow: -1px 1px 3px;
+  box-shadow: rgba(0, 0, 0, 0.199);
+}
 .weather-input{
     background-image: url('/public/media/bg2.jpg');
     background-size: cover;
     
 }
+
+.weather-data:hover{
+  transform: translateY(-5px);
+  box-shadow: -5px 5px 5px;
+}
+
 .hover\:bg-blue-700:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(29, 78, 216, var(--tw-bg-opacity));
 }
+
 @media (min-width: 768px) {
 
 	.md\:flex {

@@ -3,19 +3,19 @@ const openKey = "fd76d320b3d28632106ac92515f264b4";
 const forecast = () => {
   let input = document.querySelector("input");
 
+  document.querySelector("form").addEventListener("submit", handleSearch);
   document.querySelector("#search-btn").addEventListener("click", handleSearch);
 
-  function handleSearch() {
+  function handleSearch(e) {
+    e.preventDefault();
     let city = input.value;
-    console.log("hii");
+
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${openKey}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${openKey}&units=metric`
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(city);
         if (data.cod != 404 && data.name.toLowerCase() == city.toLowerCase()) {
-          console.log(data);
           const degree = " &degC";
           const faren = " &degF";
 
@@ -23,13 +23,13 @@ const forecast = () => {
           document.querySelector(
             ".temp"
           ).innerHTML = ` Temperature : ${Math.round(
-            data.main.temp - 273
+            data.main.temp
           )} ${degree} `;
           document.querySelector(".temp-max").innerHTML = ` Min : ${Math.round(
-            data.main.temp_max - 273
+            data.main.temp_max
           )} ${degree}`;
           document.querySelector(".temp-min").innerHTML = ` Max : ${Math.round(
-            data.main.temp_min - 273
+            data.main.temp_min
           )} ${degree}`;
           document.querySelector(
             ".humidity"
